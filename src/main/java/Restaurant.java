@@ -17,15 +17,22 @@ public class Restaurant {
         this.closingTime = closingTime;
     }
 
-    public boolean isRestaurantOpen() {
-        return true;
+    public boolean isRestaurantOpen(String localtime) {
+        if (localtime != null) {
+            if (LocalTime.parse(localtime).isAfter(openingTime) && LocalTime.parse(localtime).isBefore(closingTime))
+                return true;
+        } else {
+            if (getCurrentTime().isAfter(openingTime) && getCurrentTime().isBefore(closingTime))
+                return true;
+        }
+        return false;
         //DELETE ABOVE STATEMENT AND WRITE CODE HERE
     }
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
-        return null;
+        return this.menu;
         //DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
     }
 
